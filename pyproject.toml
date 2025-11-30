@@ -1,0 +1,19 @@
+[project]
+name = "jenv-assessment"
+version = "0.1.0"
+description = "Flask TODO application for Jenv assessment"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "alembic>=1.17.2",
+    "flask>=3.1.2",
+    "pydantic>=2.12.5",
+    "sqlmodel>=0.0.27",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.11.0",
+    "pytest>=9.0.1",
+    "ruff>=0.14.7",
+]
