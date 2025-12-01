@@ -1,5 +1,3 @@
-
-
 class TestRegister:
     def test_register_success(self, client):
         response = client.post(

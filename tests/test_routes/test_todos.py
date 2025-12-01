@@ -37,7 +37,9 @@ class TestListTodos:
         assert data["total"] == 15
         assert data["pages"] == 3
 
-    def test_list_todos_filter_completed(self, client, auth_headers, session, test_user):
+    def test_list_todos_filter_completed(
+        self, client, auth_headers, session, test_user
+    ):
         todo1 = Todo(title="Completed", user_id=test_user.id, completed=True)
         todo2 = Todo(title="Not Completed", user_id=test_user.id, completed=False)
         session.add(todo1)

@@ -34,7 +34,9 @@ def list_todos(
 ) -> TodoListResponse:
     # Base query
     statement = select(Todo).where(Todo.user_id == user_id)
-    count_statement = select(func.count()).select_from(Todo).where(Todo.user_id == user_id)
+    count_statement = (
+        select(func.count()).select_from(Todo).where(Todo.user_id == user_id)
+    )
 
     # Apply completed filter
     if completed is not None:
@@ -46,7 +48,9 @@ def list_todos(
 
     # Apply pagination
     offset = (page - 1) * per_page
-    statement = statement.offset(offset).limit(per_page).order_by(Todo.created_at.desc())
+    statement = (
+        statement.offset(offset).limit(per_page).order_by(Todo.created_at.desc())
+    )
 
     todos = session.exec(statement).all()
     pages = (total + per_page - 1) // per_page if total > 0 else 1

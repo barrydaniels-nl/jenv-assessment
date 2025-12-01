@@ -4,7 +4,13 @@ from pydantic import ValidationError
 from sqlmodel import Session
 
 from app.core.database import engine
-from app.schemas import ErrorResponse, MessageResponse, TodoCreate, TodoResponse, TodoUpdate
+from app.schemas import (
+    ErrorResponse,
+    MessageResponse,
+    TodoCreate,
+    TodoResponse,
+    TodoUpdate,
+)
 from app.services.todo_service import (
     create_todo,
     delete_todo,
@@ -142,7 +148,9 @@ def delete_todo_route(todo_id: int):
                 404,
             )
 
-        return jsonify(MessageResponse(message="Todo deleted successfully").model_dump())
+        return jsonify(
+            MessageResponse(message="Todo deleted successfully").model_dump()
+        )
 
 
 @todos_bp.route("/<int:todo_id>/toggle", methods=["POST"])

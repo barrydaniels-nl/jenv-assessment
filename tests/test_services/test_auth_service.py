@@ -110,7 +110,9 @@ class TestCreateUser:
 
 
 class TestAuthenticateUser:
-    def test_authenticate_user_success(self, app, session, test_user, test_user_password):
+    def test_authenticate_user_success(
+        self, app, session, test_user, test_user_password
+    ):
         user = authenticate_user(session, test_user.email, test_user_password)
 
         assert user is not None

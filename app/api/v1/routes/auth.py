@@ -9,7 +9,13 @@ from pydantic import ValidationError
 from sqlmodel import Session
 
 from app.core.database import engine
-from app.schemas import ErrorResponse, TokenResponse, UserLogin, UserRegister, UserResponse
+from app.schemas import (
+    ErrorResponse,
+    TokenResponse,
+    UserLogin,
+    UserRegister,
+    UserResponse,
+)
 from app.services.auth_service import (
     authenticate_user,
     create_user,
