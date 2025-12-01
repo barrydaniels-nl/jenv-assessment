@@ -1,0 +1,24 @@
+import os
+from datetime import timedelta
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+class Config:
+    # Flask
+    SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-key")
+    DEBUG = os.getenv("FLASK_DEBUG", "0") == "1"
+
+    # Database
+    DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./app.db")
+
+    # JWT
+    JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-jwt-secret-key")
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(
+        seconds=int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES", "900"))
+    )
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(
+        seconds=int(os.getenv("JWT_REFRESH_TOKEN_EXPIRES", "604800"))
+    )
