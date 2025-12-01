@@ -184,6 +184,20 @@ paths:
           description: Filter by completion status
           schema:
             type: boolean
+        - name: sort_by
+          in: query
+          description: Field to sort by
+          schema:
+            type: string
+            enum: [title, completed, priority, due_date, created_at, updated_at]
+            default: created_at
+        - name: order
+          in: query
+          description: Sort order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
       responses:
         '200':
           description: List of todos

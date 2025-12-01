@@ -119,6 +119,8 @@ Docker automatically runs migrations on startup via `entrypoint.sh`.
 - `page` - Page number (default: 1)
 - `per_page` - Items per page (default: 10, max: 100)
 - `completed` - Filter by completion status (true/false)
+- `sort_by` - Field to sort by: `title`, `completed`, `priority`, `due_date`, `created_at`, `updated_at` (default: `created_at`)
+- `order` - Sort order: `asc` or `desc` (default: `desc`)
 
 ## API Documentation
 

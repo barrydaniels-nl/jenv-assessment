@@ -56,6 +56,86 @@ class TestListTodos:
         assert len(data["items"]) == 1
         assert data["items"][0]["completed"] is True
 
+    def test_list_todos_sort_by_title_asc(
+        self, client, auth_headers, session, test_user
+    ):
+        todo1 = Todo(title="Zebra", user_id=test_user.id)
+        todo2 = Todo(title="Apple", user_id=test_user.id)
+        todo3 = Todo(title="Mango", user_id=test_user.id)
+        session.add_all([todo1, todo2, todo3])
+        session.commit()
+
+        response = client.get(
+            "/api/v1/todos?sort_by=title&order=asc",
+            headers=auth_headers,
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        titles = [item["title"] for item in data["items"]]
+        assert titles == ["Apple", "Mango", "Zebra"]
+
+    def test_list_todos_sort_by_title_desc(
+        self, client, auth_headers, session, test_user
+    ):
+        todo1 = Todo(title="Zebra", user_id=test_user.id)
+        todo2 = Todo(title="Apple", user_id=test_user.id)
+        todo3 = Todo(title="Mango", user_id=test_user.id)
+        session.add_all([todo1, todo2, todo3])
+        session.commit()
+
+        response = client.get(
+            "/api/v1/todos?sort_by=title&order=desc",
+            headers=auth_headers,
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        titles = [item["title"] for item in data["items"]]
+        assert titles == ["Zebra", "Mango", "Apple"]
+
+    def test_list_todos_sort_by_priority(
+        self, client, auth_headers, session, test_user
+    ):
+        from app.models.enums import Priority
+
+        todo1 = Todo(title="Low", user_id=test_user.id, priority=Priority.LOW)
+        todo2 = Todo(title="High", user_id=test_user.id, priority=Priority.HIGH)
+        todo3 = Todo(title="Medium", user_id=test_user.id, priority=Priority.MEDIUM)
+        session.add_all([todo1, todo2, todo3])
+        session.commit()
+
+        response = client.get(
+            "/api/v1/todos?sort_by=priority&order=asc",
+            headers=auth_headers,
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        priorities = [item["priority"] for item in data["items"]]
+        # Sorts alphabetically: high, low, medium
+        assert priorities == ["high", "low", "medium"]
+
+    def test_list_todos_invalid_sort_field_falls_back(
+        self, client, auth_headers, test_todo
+    ):
+        response = client.get(
+            "/api/v1/todos?sort_by=invalid_field",
+            headers=auth_headers,
+        )
+
+        assert response.status_code == 200
+
+    def test_list_todos_invalid_order_falls_back(
+        self, client, auth_headers, test_todo
+    ):
+        response = client.get(
+            "/api/v1/todos?order=invalid",
+            headers=auth_headers,
+        )
+
+        assert response.status_code == 200
+
     def test_list_todos_unauthorized(self, client):
         response = client.get("/api/v1/todos")
 

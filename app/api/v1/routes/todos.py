@@ -31,6 +31,8 @@ def list_todos_route():
     page = request.args.get("page", 1, type=int)
     per_page = request.args.get("per_page", 10, type=int)
     completed = request.args.get("completed", type=str)
+    sort_by = request.args.get("sort_by", "created_at", type=str)
+    order = request.args.get("order", "desc", type=str)
 
     # Validate pagination
     if page < 1:
@@ -40,13 +42,19 @@ def list_todos_route():
     if per_page > 100:
         per_page = 100
 
+    # Validate order
+    if order not in ("asc", "desc"):
+        order = "desc"
+
     # Parse completed filter
     completed_filter = None
     if completed is not None:
         completed_filter = completed.lower() in ("true", "1", "yes")
 
     with Session(engine) as session:
-        result = list_todos(session, user_id, page, per_page, completed_filter)
+        result = list_todos(
+            session, user_id, page, per_page, completed_filter, sort_by, order
+        )
         return jsonify(result.model_dump())
 
 

@@ -25,12 +25,17 @@ def get_todo(session: Session, todo_id: int, user_id: int) -> Todo | None:
     return session.exec(statement).first()
 
 
+SORTABLE_FIELDS = {"title", "completed", "priority", "due_date", "created_at", "updated_at"}
+
+
 def list_todos(
     session: Session,
     user_id: int,
     page: int = 1,
     per_page: int = 10,
     completed: bool | None = None,
+    sort_by: str = "created_at",
+    order: str = "desc",
 ) -> TodoListResponse:
     # Base query
     statement = select(Todo).where(Todo.user_id == user_id)
@@ -46,11 +51,18 @@ def list_todos(
     # Get total count
     total = session.exec(count_statement).one()
 
+    # Apply sorting
+    if sort_by not in SORTABLE_FIELDS:
+        sort_by = "created_at"
+    sort_column = getattr(Todo, sort_by)
+    if order == "asc":
+        statement = statement.order_by(sort_column.asc())
+    else:
+        statement = statement.order_by(sort_column.desc())
+
     # Apply pagination
     offset = (page - 1) * per_page
-    statement = (
-        statement.offset(offset).limit(per_page).order_by(Todo.created_at.desc())
-    )
+    statement = statement.offset(offset).limit(per_page)
 
     todos = session.exec(statement).all()
     pages = (total + per_page - 1) // per_page if total > 0 else 1
