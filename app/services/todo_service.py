@@ -25,7 +25,14 @@ def get_todo(session: Session, todo_id: int, user_id: int) -> Todo | None:
     return session.exec(statement).first()
 
 
-SORTABLE_FIELDS = {"title", "completed", "priority", "due_date", "created_at", "updated_at"}
+SORTABLE_FIELDS = {
+    "title",
+    "completed",
+    "priority",
+    "due_date",
+    "created_at",
+    "updated_at",
+}
 
 
 def list_todos(

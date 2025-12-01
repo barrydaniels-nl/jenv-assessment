@@ -126,9 +126,7 @@ class TestListTodos:
 
         assert response.status_code == 200
 
-    def test_list_todos_invalid_order_falls_back(
-        self, client, auth_headers, test_todo
-    ):
+    def test_list_todos_invalid_order_falls_back(self, client, auth_headers, test_todo):
         response = client.get(
             "/api/v1/todos?order=invalid",
             headers=auth_headers,
