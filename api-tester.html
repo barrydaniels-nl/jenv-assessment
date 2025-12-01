@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask TODO API Tester</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00d9ff;
+        }
+        .config-bar {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .config-bar label {
+            font-weight: 500;
+        }
+        .config-bar input {
+            padding: 8px 12px;
+            border: 1px solid #0f3460;
+            border-radius: 4px;
+            background: #0f3460;
+            color: #eee;
+            flex: 1;
+            min-width: 200px;
+        }
+        .auth-status {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .auth-status.logged-in {
+            background: #00b894;
+            color: #fff;
+        }
+        .auth-status.logged-out {
+            background: #e17055;
+            color: #fff;
+        }
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #16213e;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .tab:hover {
+            background: #0f3460;
+            color: #fff;
+        }
+        .tab.active {
+            background: #0f3460;
+            color: #00d9ff;
+        }
+        .panel {
+            display: none;
+            background: #16213e;
+            padding: 25px;
+            border-radius: 0 8px 8px 8px;
+        }
+        .panel.active {
+            display: block;
+        }
+        .endpoint-card {
+            background: #0f3460;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .method {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        .method.get { background: #00b894; color: #fff; }
+        .method.post { background: #0984e3; color: #fff; }
+        .method.put { background: #fdcb6e; color: #000; }
+        .method.delete { background: #d63031; color: #fff; }
+        .endpoint-path {
+            font-family: monospace;
+            font-size: 14px;
+            color: #dfe6e9;
+        }
+        .endpoint-desc {
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #b2bec3;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #1a1a2e;
+            border-radius: 4px;
+            background: #1a1a2e;
+            color: #eee;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            min-height: 80px;
+            font-family: monospace;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        button.send-btn {
+            padding: 10px 25px;
+            background: #00d9ff;
+            border: none;
+            border-radius: 4px;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button.send-btn:hover {
+            background: #00b8d9;
+        }
+        button.send-btn:disabled {
+            background: #636e72;
+            cursor: not-allowed;
+        }
+        .response-area {
+            margin-top: 15px;
+            background: #1a1a2e;
+            border-radius: 4px;
+            padding: 15px;
+            display: none;
+        }
+        .response-area.show {
+            display: block;
+        }
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        .response-status {
+            font-weight: bold;
+        }
+        .response-status.success { color: #00b894; }
+        .response-status.error { color: #d63031; }
+        .response-body {
+            background: #0f3460;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .todo-list {
+            margin-top: 15px;
+        }
+        .todo-item {
+            background: #1a1a2e;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .todo-item.completed .todo-title {
+            text-decoration: line-through;
+            color: #636e72;
+        }
+        .todo-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .todo-title {
+            flex: 1;
+            font-weight: 500;
+        }
+        .todo-priority {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .todo-priority.low { background: #00b894; }
+        .todo-priority.medium { background: #fdcb6e; color: #000; }
+        .todo-priority.high { background: #d63031; }
+        .todo-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .todo-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .btn-edit { background: #0984e3; color: #fff; }
+        .btn-delete { background: #d63031; color: #fff; }
+        .logout-btn {
+            padding: 8px 16px;
+            background: #d63031;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .info-box {
+            background: #0f3460;
+            border-left: 4px solid #00d9ff;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flask TODO API Tester</h1>
+
+        <div class="config-bar">
+            <label>Base URL:</label>
+            <input type="text" id="baseUrl" value="http://127.0.0.1:5050/api/v1" placeholder="API Base URL">
+            <div id="authStatus" class="auth-status logged-out">Not Logged In</div>
+            <button id="logoutBtn" class="logout-btn" style="display:none" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('health')">Health</button>
+            <button class="tab" onclick="showTab('auth')">Authentication</button>
+            <button class="tab" onclick="showTab('todos')">Todos</button>
+            <button class="tab" onclick="showTab('raw')">Raw Request</button>
+        </div>
+
+        <!-- Health Panel -->
+        <div id="health" class="panel active">
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/health</span>
+                </div>
+                <p class="endpoint-desc">Check if the API is running</p>
+                <button class="send-btn" onclick="checkHealth()">Check Health</button>
+                <div id="healthResponse" class="response-area"></div>
+            </div>
+        </div>
+
+        <!-- Auth Panel -->
+        <div id="auth" class="panel">
+            <!-- Register -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/auth/register</span>
+                </div>
+                <p class="endpoint-desc">Create a new user account</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="regEmail" placeholder="user@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="regUsername" placeholder="johndoe">
+                    </div>
+                    <div class="form-group">
+                        <label>Password (min 8 chars)</label>
+                        <input type="password" id="regPassword" placeholder="********">
+                    </div>
+                </div>
+                <button class="send-btn" onclick="register()">Register</button>
+                <div id="registerResponse" class="response-area"></div>
+            </div>
+
+            <!-- Login -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/auth/login</span>
+                </div>
+                <p class="endpoint-desc">Login and get JWT tokens</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" placeholder="user@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" placeholder="********">
+                    </div>
+                </div>
+                <button class="send-btn" onclick="login()">Login</button>
+                <div id="loginResponse" class="response-area"></div>
+            </div>
+
+            <!-- Refresh Token -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/auth/refresh</span>
+                </div>
+                <p class="endpoint-desc">Get a new access token using refresh token</p>
+                <button class="send-btn" onclick="refreshToken()">Refresh Token</button>
+                <div id="refreshResponse" class="response-area"></div>
+            </div>
+
+            <!-- Get Current User -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/auth/me</span>
+                </div>
+                <p class="endpoint-desc">Get current authenticated user info</p>
+                <button class="send-btn" onclick="getCurrentUser()">Get User Info</button>
+                <div id="meResponse" class="response-area"></div>
+            </div>
+        </div>
+
+        <!-- Todos Panel -->
+        <div id="todos" class="panel">
+            <div class="info-box">
+                You must be logged in to manage todos. Use the Authentication tab to login first.
+            </div>
+
+            <!-- Create Todo -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/todos</span>
+                </div>
+                <p class="endpoint-desc">Create a new todo item</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" id="todoTitle" placeholder="Buy groceries">
+                    </div>
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <select id="todoPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Due Date</label>
+                        <input type="datetime-local" id="todoDueDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" id="todoDescription" placeholder="Optional description">
+                </div>
+                <button class="send-btn" onclick="createTodo()">Create Todo</button>
+                <div id="createTodoResponse" class="response-area"></div>
+            </div>
+
+            <!-- List Todos -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="endpoint-path">/todos</span>
+                </div>
+                <p class="endpoint-desc">List all todos with pagination</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Page</label>
+                        <input type="number" id="todosPage" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Per Page</label>
+                        <input type="number" id="todosPerPage" value="10" min="1" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label>Filter by Completed</label>
+                        <select id="todosCompleted">
+                            <option value="">All</option>
+                            <option value="true">Completed</option>
+                            <option value="false">Pending</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="send-btn" onclick="listTodos()">List Todos</button>
+                <div id="listTodosResponse" class="response-area"></div>
+                <div id="todosList" class="todo-list"></div>
+            </div>
+
+            <!-- Get/Update/Delete Todo -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">GET</span>
+                    <span class="method put">PUT</span>
+                    <span class="method delete">DELETE</span>
+                    <span class="endpoint-path">/todos/{todoId}</span>
+                </div>
+                <p class="endpoint-desc">Get, update, or delete a specific todo</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Todo ID *</label>
+                        <input type="number" id="todoId" placeholder="1">
+                    </div>
+                </div>
+                <div id="updateFields" style="display:none">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>New Title</label>
+                            <input type="text" id="updateTitle" placeholder="Updated title">
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <select id="updatePriority">
+                                <option value="">-- No change --</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Completed</label>
+                            <select id="updateCompleted">
+                                <option value="">-- No change --</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <input type="text" id="updateDescription" placeholder="Updated description">
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="send-btn" onclick="getTodo()">Get Todo</button>
+                    <button class="send-btn" onclick="toggleUpdateFields()" id="toggleUpdateBtn">Show Update Fields</button>
+                    <button class="send-btn" onclick="updateTodo()">Update Todo</button>
+                    <button class="send-btn" style="background:#d63031;color:#fff" onclick="deleteTodo()">Delete Todo</button>
+                </div>
+                <div id="todoActionResponse" class="response-area"></div>
+            </div>
+
+            <!-- Toggle Todo -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method post">POST</span>
+                    <span class="endpoint-path">/todos/{todoId}/toggle</span>
+                </div>
+                <p class="endpoint-desc">Toggle completion status of a todo</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Todo ID *</label>
+                        <input type="number" id="toggleTodoId" placeholder="1">
+                    </div>
+                </div>
+                <button class="send-btn" onclick="toggleTodo()">Toggle Completion</button>
+                <div id="toggleTodoResponse" class="response-area"></div>
+            </div>
+        </div>
+
+        <!-- Raw Request Panel -->
+        <div id="raw" class="panel">
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method get">RAW</span>
+                    <span class="endpoint-path">Custom Request</span>
+                </div>
+                <p class="endpoint-desc">Send a custom request to any endpoint</p>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Method</label>
+                        <select id="rawMethod">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="PATCH">PATCH</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Endpoint (e.g., /todos)</label>
+                        <input type="text" id="rawEndpoint" placeholder="/health">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Request Body (JSON)</label>
+                    <textarea id="rawBody" placeholder='{"key": "value"}'></textarea>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="rawAuth" checked> Include Authorization Header
+                    </label>
+                </div>
+                <button class="send-btn" onclick="sendRawRequest()">Send Request</button>
+                <div id="rawResponse" class="response-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let accessToken = localStorage.getItem('accessToken') || '';
+        let refreshTokenValue = localStorage.getItem('refreshToken') || '';
+
+        // Update auth status on load
+        updateAuthStatus();
+
+        function getBaseUrl() {
+            return document.getElementById('baseUrl').value.replace(/\/$/, '');
+        }
+
+        function updateAuthStatus() {
+            const statusEl = document.getElementById('authStatus');
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (accessToken) {
+                statusEl.textContent = 'Logged In';
+                statusEl.className = 'auth-status logged-in';
+                logoutBtn.style.display = 'block';
+            } else {
+                statusEl.textContent = 'Not Logged In';
+                statusEl.className = 'auth-status logged-out';
+                logoutBtn.style.display = 'none';
+            }
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        function showResponse(elementId, status, data, duration) {
+            const el = document.getElementById(elementId);
+            el.classList.add('show');
+            const isSuccess = status >= 200 && status < 300;
+            el.innerHTML = `
+                <div class="response-header">
+                    <span class="response-status ${isSuccess ? 'success' : 'error'}">Status: ${status}</span>
+                    <span>Time: ${duration}ms</span>
+                </div>
+                <div class="response-body">${JSON.stringify(data, null, 2)}</div>
+            `;
+        }
+
+        async function apiRequest(endpoint, options = {}) {
+            const start = Date.now();
+            const url = getBaseUrl() + endpoint;
+
+            const headers = {
+                'Content-Type': 'application/json',
+                ...options.headers
+            };
+
+            if (options.auth && accessToken) {
+                headers['Authorization'] = `Bearer ${accessToken}`;
+            }
+
+            try {
+                const response = await fetch(url, {
+                    method: options.method || 'GET',
+                    headers,
+                    body: options.body ? JSON.stringify(options.body) : undefined
+                });
+
+                const data = await response.json().catch(() => ({}));
+                const duration = Date.now() - start;
+
+                return { status: response.status, data, duration };
+            } catch (error) {
+                const duration = Date.now() - start;
+                return { status: 0, data: { error: error.message }, duration };
+            }
+        }
+
+        // Health
+        async function checkHealth() {
+            const result = await apiRequest('/health');
+            showResponse('healthResponse', result.status, result.data, result.duration);
+        }
+
+        // Auth
+        async function register() {
+            const result = await apiRequest('/auth/register', {
+                method: 'POST',
+                body: {
+                    email: document.getElementById('regEmail').value,
+                    username: document.getElementById('regUsername').value,
+                    password: document.getElementById('regPassword').value
+                }
+            });
+            showResponse('registerResponse', result.status, result.data, result.duration);
+        }
+
+        async function login() {
+            const result = await apiRequest('/auth/login', {
+                method: 'POST',
+                body: {
+                    email: document.getElementById('loginEmail').value,
+                    password: document.getElementById('loginPassword').value
+                }
+            });
+            showResponse('loginResponse', result.status, result.data, result.duration);
+
+            if (result.status === 200 && result.data.access_token) {
+                accessToken = result.data.access_token;
+                refreshTokenValue = result.data.refresh_token || '';
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('refreshToken', refreshTokenValue);
+                updateAuthStatus();
+            }
+        }
+
+        async function refreshToken() {
+            if (!refreshTokenValue) {
+                showResponse('refreshResponse', 0, { error: 'No refresh token available' }, 0);
+                return;
+            }
+            const result = await apiRequest('/auth/refresh', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${refreshTokenValue}` }
+            });
+            showResponse('refreshResponse', result.status, result.data, result.duration);
+
+            if (result.status === 200 && result.data.access_token) {
+                accessToken = result.data.access_token;
+                if (result.data.refresh_token) {
+                    refreshTokenValue = result.data.refresh_token;
+                }
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('refreshToken', refreshTokenValue);
+                updateAuthStatus();
+            }
+        }
+
+        async function getCurrentUser() {
+            const result = await apiRequest('/auth/me', { auth: true });
+            showResponse('meResponse', result.status, result.data, result.duration);
+        }
+
+        function logout() {
+            accessToken = '';
+            refreshTokenValue = '';
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            updateAuthStatus();
+        }
+
+        // Todos
+        async function createTodo() {
+            const body = {
+                title: document.getElementById('todoTitle').value,
+                priority: document.getElementById('todoPriority').value
+            };
+
+            const desc = document.getElementById('todoDescription').value;
+            if (desc) body.description = desc;
+
+            const dueDate = document.getElementById('todoDueDate').value;
+            if (dueDate) body.due_date = new Date(dueDate).toISOString();
+
+            const result = await apiRequest('/todos', {
+                method: 'POST',
+                auth: true,
+                body
+            });
+            showResponse('createTodoResponse', result.status, result.data, result.duration);
+        }
+
+        async function listTodos() {
+            const page = document.getElementById('todosPage').value;
+            const perPage = document.getElementById('todosPerPage').value;
+            const completed = document.getElementById('todosCompleted').value;
+
+            let query = `?page=${page}&per_page=${perPage}`;
+            if (completed) query += `&completed=${completed}`;
+
+            const result = await apiRequest('/todos' + query, { auth: true });
+            showResponse('listTodosResponse', result.status, result.data, result.duration);
+
+            // Render todo list
+            const listEl = document.getElementById('todosList');
+            if (result.status === 200 && result.data.items) {
+                listEl.innerHTML = result.data.items.map(todo => `
+                    <div class="todo-item ${todo.completed ? 'completed' : ''}">
+                        <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}
+                               onchange="quickToggle(${todo.id})">
+                        <span class="todo-title">${escapeHtml(todo.title)}</span>
+                        <span class="todo-priority ${todo.priority}">${todo.priority}</span>
+                        <div class="todo-actions">
+                            <button class="btn-edit" onclick="loadTodo(${todo.id})">Edit</button>
+                            <button class="btn-delete" onclick="quickDelete(${todo.id})">Delete</button>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                listEl.innerHTML = '';
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function quickToggle(id) {
+            await apiRequest(`/todos/${id}/toggle`, { method: 'POST', auth: true });
+            listTodos();
+        }
+
+        async function quickDelete(id) {
+            if (confirm('Delete this todo?')) {
+                await apiRequest(`/todos/${id}`, { method: 'DELETE', auth: true });
+                listTodos();
+            }
+        }
+
+        function loadTodo(id) {
+            document.getElementById('todoId').value = id;
+            document.getElementById('updateFields').style.display = 'block';
+            document.getElementById('toggleUpdateBtn').textContent = 'Hide Update Fields';
+        }
+
+        async function getTodo() {
+            const id = document.getElementById('todoId').value;
+            if (!id) return alert('Enter a Todo ID');
+
+            const result = await apiRequest(`/todos/${id}`, { auth: true });
+            showResponse('todoActionResponse', result.status, result.data, result.duration);
+        }
+
+        function toggleUpdateFields() {
+            const el = document.getElementById('updateFields');
+            const btn = document.getElementById('toggleUpdateBtn');
+            if (el.style.display === 'none') {
+                el.style.display = 'block';
+                btn.textContent = 'Hide Update Fields';
+            } else {
+                el.style.display = 'none';
+                btn.textContent = 'Show Update Fields';
+            }
+        }
+
+        async function updateTodo() {
+            const id = document.getElementById('todoId').value;
+            if (!id) return alert('Enter a Todo ID');
+
+            const body = {};
+            const title = document.getElementById('updateTitle').value;
+            const desc = document.getElementById('updateDescription').value;
+            const priority = document.getElementById('updatePriority').value;
+            const completed = document.getElementById('updateCompleted').value;
+
+            if (title) body.title = title;
+            if (desc) body.description = desc;
+            if (priority) body.priority = priority;
+            if (completed) body.completed = completed === 'true';
+
+            const result = await apiRequest(`/todos/${id}`, {
+                method: 'PUT',
+                auth: true,
+                body
+            });
+            showResponse('todoActionResponse', result.status, result.data, result.duration);
+        }
+
+        async function deleteTodo() {
+            const id = document.getElementById('todoId').value;
+            if (!id) return alert('Enter a Todo ID');
+            if (!confirm('Delete this todo?')) return;
+
+            const result = await apiRequest(`/todos/${id}`, {
+                method: 'DELETE',
+                auth: true
+            });
+            showResponse('todoActionResponse', result.status, result.data, result.duration);
+        }
+
+        async function toggleTodo() {
+            const id = document.getElementById('toggleTodoId').value;
+            if (!id) return alert('Enter a Todo ID');
+
+            const result = await apiRequest(`/todos/${id}/toggle`, {
+                method: 'POST',
+                auth: true
+            });
+            showResponse('toggleTodoResponse', result.status, result.data, result.duration);
+        }
+
+        // Raw Request
+        async function sendRawRequest() {
+            const method = document.getElementById('rawMethod').value;
+            const endpoint = document.getElementById('rawEndpoint').value;
+            const bodyText = document.getElementById('rawBody').value;
+            const useAuth = document.getElementById('rawAuth').checked;
+
+            let body;
+            if (bodyText && method !== 'GET') {
+                try {
+                    body = JSON.parse(bodyText);
+                } catch (e) {
+                    return alert('Invalid JSON in request body');
+                }
+            }
+
+            const result = await apiRequest(endpoint, {
+                method,
+                auth: useAuth,
+                body
+            });
+            showResponse('rawResponse', result.status, result.data, result.duration);
+        }
+    </script>
+</body>
+</html>
