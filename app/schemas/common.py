@@ -10,4 +10,4 @@ class MessageResponse(BaseModel):
 class ErrorResponse(BaseModel):
     error: str
     message: str
-    details: dict[str, Any] | None = None
+    details: list[dict[str, Any]] | dict[str, Any] | None = None
