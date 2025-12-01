@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask, jsonify, send_from_directory
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_swagger_ui import get_swaggerui_blueprint
 
@@ -9,6 +10,7 @@ from app.core.config import Config
 from app.schemas import ErrorResponse
 
 jwt = JWTManager()
+cors = CORS()
 
 SWAGGER_URL = "/docs"
 API_URL = "/openapi.yaml"
@@ -28,6 +30,7 @@ def create_app() -> Flask:
 
     # Initialize extensions
     jwt.init_app(app)
+    cors.init_app(app, origins=Config.get_cors_origins())
 
     # Swagger UI
     swaggerui_blueprint = get_swaggerui_blueprint(

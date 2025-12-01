@@ -22,3 +22,16 @@ class Config:
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(
         seconds=int(os.getenv("JWT_REFRESH_TOKEN_EXPIRES", "604800"))
     )
+
+    # CORS - comma-separated list of allowed origins, or "*" for all
+    CORS_ORIGINS: str | list[str] = os.getenv("CORS_ORIGINS", "*")
+
+    @classmethod
+    def get_cors_origins(cls) -> str | list[str]:
+        """Parse CORS_ORIGINS into a list if comma-separated, or return as-is."""
+        origins = cls.CORS_ORIGINS
+        if origins == "*":
+            return "*"
+        if "," in origins:
+            return [o.strip() for o in origins.split(",")]
+        return origins
