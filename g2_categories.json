@@ -1,0 +1,662 @@
+{
+  "source": "https://www.g2.com/categories?view_hierarchy=true",
+  "scraped_date": "2026-02-03",
+  "note": "G2 has 2000+ categories. This list contains categories discovered through web searches. The G2 website uses JavaScript rendering which limits direct scraping.",
+  "categories": [
+    {
+      "name": "CRM Software",
+      "slug": "crm",
+      "url": "https://www.g2.com/categories/crm"
+    },
+    {
+      "name": "Marketing Software",
+      "slug": "marketing",
+      "url": "https://www.g2.com/categories/marketing"
+    },
+    {
+      "name": "Marketing Automation Software",
+      "slug": "marketing-automation",
+      "url": "https://www.g2.com/categories/marketing-automation"
+    },
+    {
+      "name": "SMS Marketing Software",
+      "slug": "sms-marketing",
+      "url": "https://www.g2.com/categories/sms-marketing"
+    },
+    {
+      "name": "Account-Based Marketing Software",
+      "slug": "account-based-marketing",
+      "url": "https://www.g2.com/categories/account-based-marketing"
+    },
+    {
+      "name": "Sales Enablement Software",
+      "slug": "sales-enablement",
+      "url": "https://www.g2.com/categories/sales-enablement"
+    },
+    {
+      "name": "AI Sales Assistant Software",
+      "slug": "ai-sales-assistant",
+      "url": "https://www.g2.com/categories/ai-sales-assistant"
+    },
+    {
+      "name": "Customer Success Software",
+      "slug": "customer-success",
+      "url": "https://www.g2.com/categories/customer-success"
+    },
+    {
+      "name": "Conversational Support Software",
+      "slug": "conversational-support",
+      "url": "https://www.g2.com/categories/conversational-support"
+    },
+    {
+      "name": "Help Desk Software",
+      "slug": "help-desk",
+      "url": "https://www.g2.com/categories/help-desk"
+    },
+    {
+      "name": "Service Desk Software",
+      "slug": "service-desk",
+      "url": "https://www.g2.com/categories/service-desk"
+    },
+    {
+      "name": "Customer Self-Service Software",
+      "slug": "customer-self-service",
+      "url": "https://www.g2.com/categories/customer-self-service"
+    },
+    {
+      "name": "ERP Systems",
+      "slug": "erp-systems",
+      "url": "https://www.g2.com/categories/erp-systems"
+    },
+    {
+      "name": "Accounting & Finance Software",
+      "slug": "accounting-finance",
+      "url": "https://www.g2.com/categories/accounting-finance"
+    },
+    {
+      "name": "Accounting Software",
+      "slug": "accounting",
+      "url": "https://www.g2.com/categories/accounting"
+    },
+    {
+      "name": "Financial Services Software",
+      "slug": "financial-services",
+      "url": "https://www.g2.com/categories/financial-services"
+    },
+    {
+      "name": "Financial Analytics Software",
+      "slug": "financial-analytics",
+      "url": "https://www.g2.com/categories/financial-analytics"
+    },
+    {
+      "name": "Financial Consulting",
+      "slug": "financial-consulting",
+      "url": "https://www.g2.com/categories/financial-consulting"
+    },
+    {
+      "name": "Accounts Payable Automation Software",
+      "slug": "ap-automation",
+      "url": "https://www.g2.com/categories/ap-automation"
+    },
+    {
+      "name": "HR Software",
+      "slug": "hr",
+      "url": "https://www.g2.com/categories/hr"
+    },
+    {
+      "name": "Human Capital Management (HCM) Software",
+      "slug": "human-resource-management-systems",
+      "url": "https://www.g2.com/categories/human-resource-management-systems"
+    },
+    {
+      "name": "Core HR Software",
+      "slug": "core-hr",
+      "url": "https://www.g2.com/categories/core-hr"
+    },
+    {
+      "name": "Education HR Software",
+      "slug": "education-hr",
+      "url": "https://www.g2.com/categories/education-hr"
+    },
+    {
+      "name": "Payroll Services",
+      "slug": "payroll-services",
+      "url": "https://www.g2.com/categories/payroll-services"
+    },
+    {
+      "name": "Multi-Country Payroll Software",
+      "slug": "multi-country-payroll",
+      "url": "https://www.g2.com/categories/multi-country-payroll"
+    },
+    {
+      "name": "HR Services",
+      "slug": "hr-services",
+      "url": "https://www.g2.com/categories/hr-services"
+    },
+    {
+      "name": "IT Software",
+      "slug": "it-software",
+      "url": "https://www.g2.com/categories/it-software"
+    },
+    {
+      "name": "Enterprise IT Management Software",
+      "slug": "enterprise-it-management",
+      "url": "https://www.g2.com/categories/enterprise-it-management"
+    },
+    {
+      "name": "Project Management Software",
+      "slug": "project-management",
+      "url": "https://www.g2.com/categories/project-management"
+    },
+    {
+      "name": "Project Collaboration Software",
+      "slug": "project-collaboration",
+      "url": "https://www.g2.com/categories/project-collaboration"
+    },
+    {
+      "name": "Collaboration & Productivity Software",
+      "slug": "collaboration-productivity",
+      "url": "https://www.g2.com/categories/collaboration-productivity"
+    },
+    {
+      "name": "Work Management Software",
+      "slug": "work-management",
+      "url": "https://www.g2.com/categories/work-management"
+    },
+    {
+      "name": "Google Workspace Project Management Software",
+      "slug": "google-workspace-project-management",
+      "url": "https://www.g2.com/categories/google-workspace-project-management"
+    },
+    {
+      "name": "Video Conferencing Software",
+      "slug": "video-conferencing",
+      "url": "https://www.g2.com/categories/video-conferencing"
+    },
+    {
+      "name": "Webinar Platforms",
+      "slug": "webinar",
+      "url": "https://www.g2.com/categories/webinar"
+    },
+    {
+      "name": "Virtual Event Platforms",
+      "slug": "virtual-event-platforms",
+      "url": "https://www.g2.com/categories/virtual-event-platforms"
+    },
+    {
+      "name": "E-Commerce Platforms",
+      "slug": "e-commerce-platforms",
+      "url": "https://www.g2.com/categories/e-commerce-platforms"
+    },
+    {
+      "name": "E-Commerce Search Software",
+      "slug": "e-commerce-search",
+      "url": "https://www.g2.com/categories/e-commerce-search"
+    },
+    {
+      "name": "E-Commerce Fraud Protection Software",
+      "slug": "e-commerce-fraud-protection",
+      "url": "https://www.g2.com/categories/e-commerce-fraud-protection"
+    },
+    {
+      "name": "Development Software",
+      "slug": "development",
+      "url": "https://www.g2.com/categories/development"
+    },
+    {
+      "name": "DevOps Software",
+      "slug": "devops",
+      "url": "https://www.g2.com/categories/devops"
+    },
+    {
+      "name": "DevOps Platforms",
+      "slug": "devops-platforms",
+      "url": "https://www.g2.com/categories/devops-platforms"
+    },
+    {
+      "name": "DevSecOps Software",
+      "slug": "devsecops",
+      "url": "https://www.g2.com/categories/devsecops"
+    },
+    {
+      "name": "Continuous Integration Tools",
+      "slug": "continuous-integration",
+      "url": "https://www.g2.com/categories/continuous-integration"
+    },
+    {
+      "name": "Continuous Delivery Tools",
+      "slug": "continuous-delivery-tools",
+      "url": "https://www.g2.com/categories/continuous-delivery-tools"
+    },
+    {
+      "name": "Low-Code Development Platforms",
+      "slug": "low-code-development-platforms",
+      "url": "https://www.g2.com/categories/low-code-development-platforms"
+    },
+    {
+      "name": "Technical Skills Development Software",
+      "slug": "technical-skills-development",
+      "url": "https://www.g2.com/categories/technical-skills-development"
+    },
+    {
+      "name": "Software Development Analytics Tools",
+      "slug": "software-development-analytics-tools",
+      "url": "https://www.g2.com/categories/software-development-analytics-tools"
+    },
+    {
+      "name": "Cloud Security Software",
+      "slug": "cloud-security",
+      "url": "https://www.g2.com/categories/cloud-security"
+    },
+    {
+      "name": "Cloud Security Posture Management (CSPM)",
+      "slug": "cloud-security-posture-management-cspm",
+      "url": "https://www.g2.com/categories/cloud-security-posture-management-cspm"
+    },
+    {
+      "name": "Cloud Security Monitoring and Analytics Software",
+      "slug": "cloud-security-monitoring-and-analytics",
+      "url": "https://www.g2.com/categories/cloud-security-monitoring-and-analytics"
+    },
+    {
+      "name": "Cloud Compliance Software",
+      "slug": "cloud-compliance",
+      "url": "https://www.g2.com/categories/cloud-compliance"
+    },
+    {
+      "name": "Integration Platform as a Service (iPaaS)",
+      "slug": "ipaas",
+      "url": "https://www.g2.com/categories/ipaas"
+    },
+    {
+      "name": "Software Supply Chain Security Solutions",
+      "slug": "software-supply-chain-security-tools",
+      "url": "https://www.g2.com/categories/software-supply-chain-security-tools"
+    },
+    {
+      "name": "Website Security Software",
+      "slug": "website-security",
+      "url": "https://www.g2.com/categories/website-security"
+    },
+    {
+      "name": "Endpoint Protection Software",
+      "slug": "endpoint-protection",
+      "url": "https://www.g2.com/categories/endpoint-protection"
+    },
+    {
+      "name": "Endpoint Protection Platforms",
+      "slug": "endpoint-protection-suites",
+      "url": "https://www.g2.com/categories/endpoint-protection-suites"
+    },
+    {
+      "name": "Antivirus Software",
+      "slug": "antivirus",
+      "url": "https://www.g2.com/categories/antivirus"
+    },
+    {
+      "name": "Firewall Software",
+      "slug": "firewall-software",
+      "url": "https://www.g2.com/categories/firewall-software"
+    },
+    {
+      "name": "Data Security Posture Management (DSPM)",
+      "slug": "data-security-posture-management-dspm",
+      "url": "https://www.g2.com/categories/data-security-posture-management-dspm"
+    },
+    {
+      "name": "Business Intelligence Software",
+      "slug": "business-intelligence",
+      "url": "https://www.g2.com/categories/business-intelligence"
+    },
+    {
+      "name": "Analytics Tools & Software",
+      "slug": "analytics",
+      "url": "https://www.g2.com/categories/analytics"
+    },
+    {
+      "name": "Analytics Platforms",
+      "slug": "analytics-platforms",
+      "url": "https://www.g2.com/categories/analytics-platforms"
+    },
+    {
+      "name": "Big Data Analytics Software",
+      "slug": "big-data-analytics",
+      "url": "https://www.g2.com/categories/big-data-analytics"
+    },
+    {
+      "name": "Digital Analytics Software",
+      "slug": "digital-analytics",
+      "url": "https://www.g2.com/categories/digital-analytics"
+    },
+    {
+      "name": "Retail Analytics Software",
+      "slug": "retail-analytics",
+      "url": "https://www.g2.com/categories/retail-analytics"
+    },
+    {
+      "name": "Embedded Business Intelligence Software",
+      "slug": "embedded-business-intelligence",
+      "url": "https://www.g2.com/categories/embedded-business-intelligence"
+    },
+    {
+      "name": "Data Visualization Tools",
+      "slug": "data-visualization-tools",
+      "url": "https://www.g2.com/categories/data-visualization-tools"
+    },
+    {
+      "name": "Account-Based Analytics Software",
+      "slug": "account-based-analytics",
+      "url": "https://www.g2.com/categories/account-based-analytics"
+    },
+    {
+      "name": "Marketing Analytics Services",
+      "slug": "marketing-analytics-services",
+      "url": "https://www.g2.com/categories/marketing-analytics-services"
+    },
+    {
+      "name": "Sales Analytics Software",
+      "slug": "sales-analytics",
+      "url": "https://www.g2.com/categories/sales-analytics"
+    },
+    {
+      "name": "Account Data Management Software",
+      "slug": "account-data-management",
+      "url": "https://www.g2.com/categories/account-data-management"
+    },
+    {
+      "name": "Content Management Systems",
+      "slug": "content-management",
+      "url": "https://www.g2.com/categories/content-management"
+    },
+    {
+      "name": "Web Content Management Software",
+      "slug": "web-content-management",
+      "url": "https://www.g2.com/categories/web-content-management"
+    },
+    {
+      "name": "Enterprise Content Management (ECM) Systems",
+      "slug": "enterprise-content-management-ecm",
+      "url": "https://www.g2.com/categories/enterprise-content-management-ecm"
+    },
+    {
+      "name": "Component Content Management Systems",
+      "slug": "component-content-management-systems",
+      "url": "https://www.g2.com/categories/component-content-management-systems"
+    },
+    {
+      "name": "Supply Chain & Logistics Software",
+      "slug": "supply-chain-logistics",
+      "url": "https://www.g2.com/categories/supply-chain-logistics"
+    },
+    {
+      "name": "Demand Planning Software",
+      "slug": "demand-planning",
+      "url": "https://www.g2.com/categories/demand-planning"
+    },
+    {
+      "name": "Supply Chain Business Networks",
+      "slug": "supply-chain-business-networks",
+      "url": "https://www.g2.com/categories/supply-chain-business-networks"
+    },
+    {
+      "name": "Supply Chain Suites",
+      "slug": "supply-chain-suites",
+      "url": "https://www.g2.com/categories/supply-chain-suites"
+    },
+    {
+      "name": "Supply Chain Planning Software",
+      "slug": "supply-chain-planning",
+      "url": "https://www.g2.com/categories/supply-chain-planning"
+    },
+    {
+      "name": "Shipping Software",
+      "slug": "shipping",
+      "url": "https://www.g2.com/categories/shipping"
+    },
+    {
+      "name": "Transportation Management Systems (TMS)",
+      "slug": "transportation-management-systems-tms",
+      "url": "https://www.g2.com/categories/transportation-management-systems-tms"
+    },
+    {
+      "name": "Third-Party Logistics Providers",
+      "slug": "third-party-logistics",
+      "url": "https://www.g2.com/categories/third-party-logistics"
+    },
+    {
+      "name": "Healthcare Supply Chain Software",
+      "slug": "healthcare-supply-chain",
+      "url": "https://www.g2.com/categories/healthcare-supply-chain"
+    },
+    {
+      "name": "Social Media Management Tools",
+      "slug": "social-media-mgmt",
+      "url": "https://www.g2.com/categories/social-media-mgmt"
+    },
+    {
+      "name": "Social Media Monitoring Tools",
+      "slug": "social-media-monitoring",
+      "url": "https://www.g2.com/categories/social-media-monitoring"
+    },
+    {
+      "name": "Social Media Listening Tools",
+      "slug": "social-media-listening-tools",
+      "url": "https://www.g2.com/categories/social-media-listening-tools"
+    },
+    {
+      "name": "Social Media Suites",
+      "slug": "social-media-suites",
+      "url": "https://www.g2.com/categories/social-media-suites"
+    },
+    {
+      "name": "Social Media Analytics Software",
+      "slug": "social-media-analytics",
+      "url": "https://www.g2.com/categories/social-media-analytics"
+    },
+    {
+      "name": "Media Monitoring Software",
+      "slug": "media-monitoring",
+      "url": "https://www.g2.com/categories/media-monitoring"
+    },
+    {
+      "name": "Graphic Design Software",
+      "slug": "graphic-design",
+      "url": "https://www.g2.com/categories/graphic-design"
+    },
+    {
+      "name": "Graphic Design Services",
+      "slug": "graphic-design-services",
+      "url": "https://www.g2.com/categories/graphic-design-services"
+    },
+    {
+      "name": "Display Ad Design Software",
+      "slug": "display-ad-design",
+      "url": "https://www.g2.com/categories/display-ad-design"
+    },
+    {
+      "name": "Creative Services",
+      "slug": "creative-services",
+      "url": "https://www.g2.com/categories/creative-services"
+    },
+    {
+      "name": "Product Design Services",
+      "slug": "product-design-services",
+      "url": "https://www.g2.com/categories/product-design-services"
+    },
+    {
+      "name": "Database Software",
+      "slug": "database-software",
+      "url": "https://www.g2.com/categories/database-software"
+    },
+    {
+      "name": "Relational Databases",
+      "slug": "relational-databases",
+      "url": "https://www.g2.com/categories/relational-databases"
+    },
+    {
+      "name": "Backup Software",
+      "slug": "backup",
+      "url": "https://www.g2.com/categories/backup"
+    },
+    {
+      "name": "Database Backup Software",
+      "slug": "database-backup",
+      "url": "https://www.g2.com/categories/database-backup"
+    },
+    {
+      "name": "Server Backup Software",
+      "slug": "server-backup",
+      "url": "https://www.g2.com/categories/server-backup"
+    },
+    {
+      "name": "Online Backup Software",
+      "slug": "online-backup",
+      "url": "https://www.g2.com/categories/online-backup"
+    },
+    {
+      "name": "Storage Management Software",
+      "slug": "storage-management",
+      "url": "https://www.g2.com/categories/storage-management"
+    },
+    {
+      "name": "Hosting Providers",
+      "slug": "hosting",
+      "url": "https://www.g2.com/categories/hosting"
+    },
+    {
+      "name": "Web Hosting Platforms",
+      "slug": "web-hosting",
+      "url": "https://www.g2.com/categories/web-hosting"
+    },
+    {
+      "name": "Shared Hosting Platforms",
+      "slug": "shared-hosting",
+      "url": "https://www.g2.com/categories/shared-hosting"
+    },
+    {
+      "name": "Market Intelligence Software",
+      "slug": "market-intelligence",
+      "url": "https://www.g2.com/categories/market-intelligence"
+    },
+    {
+      "name": "Buyer Intent Data Providers",
+      "slug": "buyer-intent-data-providers",
+      "url": "https://www.g2.com/categories/buyer-intent-data-providers"
+    },
+    {
+      "name": "User Research Tools",
+      "slug": "user-research",
+      "url": "https://www.g2.com/categories/user-research"
+    },
+    {
+      "name": "SEO Tools",
+      "slug": "seo-tools",
+      "url": "https://www.g2.com/categories/seo-tools"
+    },
+    {
+      "name": "Customer Data Platform (CDP)",
+      "slug": "customer-data-platform-cdp",
+      "url": "https://www.g2.com/categories/customer-data-platform-cdp"
+    },
+    {
+      "name": "Retail Software",
+      "slug": "retail",
+      "url": "https://www.g2.com/categories/retail"
+    },
+    {
+      "name": "Professional Association Management Software",
+      "slug": "professional-association-management",
+      "url": "https://www.g2.com/categories/professional-association-management"
+    },
+    {
+      "name": "Child Care Software",
+      "slug": "child-care",
+      "url": "https://www.g2.com/categories/child-care"
+    },
+    {
+      "name": "Software Developer Services",
+      "slug": "software-developer-services",
+      "url": "https://www.g2.com/categories/software-developer-services"
+    },
+    {
+      "name": "Managed Workplace Services (MWS)",
+      "slug": "managed-workplace-services-mws",
+      "url": "https://www.g2.com/categories/managed-workplace-services-mws"
+    },
+    {
+      "name": "Software Intelligence Platforms",
+      "slug": "software-intelligence-platforms",
+      "url": "https://www.g2.com/categories/software-intelligence-platforms"
+    },
+    {
+      "name": "Infor LN Resellers",
+      "slug": "infor-ln-resellers",
+      "url": "https://www.g2.com/categories/infor-ln-resellers"
+    },
+    {
+      "name": "Revenue AI Platforms",
+      "slug": "revenue-ai",
+      "url": "https://www.g2.com/categories/revenue-ai"
+    },
+    {
+      "name": "AI Medical Diagnostic Platforms",
+      "slug": "ai-medical-diagnostic-platforms",
+      "url": "https://www.g2.com/categories/ai-medical-diagnostic-platforms"
+    },
+    {
+      "name": "AI Interview Agents",
+      "slug": "ai-interview-agents",
+      "url": "https://www.g2.com/categories/ai-interview-agents"
+    },
+    {
+      "name": "IT Financial Management (ITFM) Software",
+      "slug": "it-financial-management",
+      "url": "https://www.g2.com/categories/it-financial-management"
+    },
+    {
+      "name": "Media & Document Accessibility Software",
+      "slug": "media-document-accessibility",
+      "url": "https://www.g2.com/categories/media-document-accessibility"
+    },
+    {
+      "name": "Chemicals Management Software",
+      "slug": "chemicals-management",
+      "url": "https://www.g2.com/categories/chemicals-management"
+    },
+    {
+      "name": "Low-Code Machine Learning Platforms",
+      "slug": "low-code-machine-learning-platforms",
+      "url": "https://www.g2.com/categories/low-code-machine-learning-platforms"
+    },
+    {
+      "name": "Low-Code Mobile App Builders",
+      "slug": "low-code-mobile-app-builders",
+      "url": "https://www.g2.com/categories/low-code-mobile-app-builders"
+    },
+    {
+      "name": "Consumer Insights Platforms",
+      "slug": "consumer-insights-platforms",
+      "url": "https://www.g2.com/categories/consumer-insights-platforms"
+    },
+    {
+      "name": "Financial Fraud Protection Software",
+      "slug": "financial-fraud-protection",
+      "url": "https://www.g2.com/categories/financial-fraud-protection"
+    },
+    {
+      "name": "Website Privacy Auditing Tools",
+      "slug": "website-privacy-auditing-tools",
+      "url": "https://www.g2.com/categories/website-privacy-auditing-tools"
+    },
+    {
+      "name": "RCS Business Messaging",
+      "slug": "rcs-business-messaging",
+      "url": "https://www.g2.com/categories/rcs-business-messaging"
+    },
+    {
+      "name": "Long-Term Post Acute Care Software",
+      "slug": "long-term-post-acute-care",
+      "url": "https://www.g2.com/categories/long-term-post-acute-care"
+    }
+  ]
+}
